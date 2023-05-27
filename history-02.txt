@@ -1,0 +1,182 @@
+    1  clear
+    2  exit
+    3  mkdir work 
+    4  cd work/
+    5  pwd
+    6  ll
+    7  for x in {1..5}; do if [ -f sre_team ]; then htpasswd -B -b sre_team user$x redhat ; else htpasswd -c -B -b sre_team user$x redhat; done
+    8  for x in {1..5}; do if [ -f sre_team ]; then htpasswd -B -b sre_team user$x redhat ; else htpasswd -c -B -b sre_team user$x redhat; fi ; done 
+    9  ll
+   10  cat sre_team 
+   11  ll
+   12  cat sre_team 
+   13  for x in {6..10};  do file_name=devops_team;  if [ -f $file_name ];  then   htpasswd -B -b $file_name user$x redhat ;  else  htpasswd -c -B -b $file_name user$x redhat ;  fi;  done
+   14  ll
+   15  cat devops_team 
+   16  for x in {11..30};  do file_name=application-01_team;  if [ -f $file_name ];  then   htpasswd -B -b $file_name user$x redhat ;  else  htpasswd -c -B -b $file_name user$x redhat ;  fi;  done
+   17  ll
+   18  for x in {31..50};  do file_name=application-02_team;  if [ -f $file_name ];  then   htpasswd -B -b $file_name user$x redhat ;  else  htpasswd -c -B -b $file_name user$x redhat ;  fi;  done
+   19  for x in {51..70};  do file_name=application-03_team;  if [ -f $file_name ];  then   htpasswd -B -b $file_name user$x redhat ;  else  htpasswd -c -B -b $file_name user$x redhat ;  fi;  done
+   20  ll
+   21  oc create secret generic sre_team_secret --from-file htpasswd=sre_team -n openshift-config 
+   22  oc whoami 
+   23  ssh utility -l root
+   24  ll
+   25  cat kubeconfig| grep server
+   26  cat kubeadmin-password 
+   27  oc login -u kubeadmin -p WdBz8-mLKk9-yVN75-UhaiU https://api.ocp4.example.com:6443
+   28  oc create secret generic sre_team_secret --from-file htpasswd=sre_team -n openshift-config 
+   29  oc create secret generic sre-team-secret --from-file htpasswd=sre_team -n openshift-config 
+   30  oc create secret generic devops-team-secret --from-file htpasswd=devops_team -n openshift-config 
+   31  oc create secret generic application-01-team-secret --from-file htpasswd=application-01_team -n openshift-config 
+   32  oc create secret generic application-02-team-secret --from-file htpasswd=application-02_team -n openshift-config 
+   33  oc create secret generic application-03-team-secret --from-file htpasswd=application-03_team -n openshift-config 
+   34  oc get secret -n openshift-config
+   35  oc get secret -n openshift-config | grep Opaque 
+   36  oc get secret -n openshift-config | grep Opaque | grep secret
+   37  oc get oauth/cluster -o yaml > ouath.yaml 
+   38  vim ouath.yaml 
+   39  oc replace -f ouath.yaml 
+   40  vim ouath.yaml 
+   41  oc replace -f ouath.yaml 
+   42  for x in {1..70}; do oc login -u user$x -p redhat;  done
+   43  oc login -u user05 -p redhat
+   44  oc login -u user5 -p redhat
+   45  oc edit oauth/cluster 
+   46  oc login -u user5 -p redhat
+   47  oc get pods -n openshift-apiserver
+   48  oc get pods -n openshift-oauthserver
+   49  oc projects | greo oauth
+   50  oc projects | grep oauth
+   51  oc get pods -n openshift-oauth-apiserver
+   52  oc get pods -n openshift-apiserver
+   53  oc login -u user5 -p redhat
+   54  oc get pods -n openshift-oauth-apiserver
+   55  oc get pods -n openshift-apiserver
+   56  oc login -u user5 -p redhat
+   57  oc login -u kubeadmin -p WdBz8-mLKk9-yVN75-UhaiU https://api.ocp4.example.com:6443
+   58  oc login -u user5 -p redhat
+   59  oc get pods -n openshift-apiserver
+   60  oc get pods -n openshift-oauth-apiserver
+   61  oc login -u user5 -p redhat
+   62  for x in `cat`; do oc delete pod $x
+   63  oc login -u user5 -p redhat
+   64  for x in `cat`; do oc delete pod $x -n openshift-; 
+   65  oc login -u user5 -p redhat
+   66  oc get pods -n openshift-apiserver
+   67  oc delete pod apiserver-678b596447-p5ps5 -n openshift-apiserver
+   68  oc login -u user5 -p redhat
+   69  oc get pods -n openshift-apiserver
+   70  oc login -u user5 -p redhat
+   71  oc login -u user33 -p redhat
+   72  oc get pods -n openshift-apiserver
+   73  oc login -u user5 -p redhat
+   74  oc delete pod apiserver-678b596447-t64mg -n openshift-apiserver
+   75  oc login -u user5 -p redhat
+   76  oc get pods -n openshift-apiserver
+   77  oc delete pod 
+   78  oc delete pod apiserver-678b596447-tlfvn
+   79  oc delete pod apiserver-678b596447-tlfvn -n openshift-apiserver
+   80  oc get pods -n openshift-apiserver
+   81  oc login -u user5 -p redhat
+   82  oc get pods -n openshift-oauth-apiserver
+   83  oc delete pod apiserver-d4dddf5fc-9v4tb -n openshift-oauth-apiserver
+   84  oc get pods -n openshift-oauth-apiserver
+   85  oc login -u user5 -p redhat
+   86  oc get events
+   87  oc get pods -n openshift-oauth-apiserver
+   88  oc login -u user5 -p redhat
+   89  history | grep htpasswd
+   90  oc login -u user5 -p redhat
+   91  history | grep secret 
+   92  oc login -u user5 -p redhat
+   93  oc login -u user15 -p redhat
+   94  history | grep secret 
+   95  oc login -u user15 -p redhat
+   96  oc edit oauth/cluster 
+   97  history | grep secret 
+   98  oc edit oauth/cluster 
+   99  oc login -u user15 -p redhat
+  100  oc login -u user4 -p redhat
+  101  oc get  pods -n openshift-apiserver
+  102  oc get  pods -n openshift-oauth-apiserver
+  103  oc login -u user15 -p redhat
+  104  oc login -u user50 -p redhat
+  105  oc login -u user1 -p redhat
+  106  ll
+  107  history | grep secret 
+  108  ls
+  109  oc login -u user1 -p redhat
+  110  for x in `cat`; do oc delete pod $x -n openshift-; 
+  111  for x in {1..70}; do oc login -u user$x -p redhat ; done
+  112  oc whoami 
+  113  oc login -u kubeadmin -p WdBz8-mLKk9-yVN75-UhaiU https://api.ocp4.example.com:6443
+  114  oc get users
+  115  oc get users | grep sre
+  116  oc get users | grep devops
+  117  oc get users | grep application01
+  118  oc get users | grep application-01
+  119  history > history.txt 
+  120  git clone https://github.com/cprakash2118/ocp-session
+  121  cp -rpv history.txt ocp-session/
+  122  cd ocp-session/
+  123  pwd
+  124  ll
+  125  git status 
+  126  git add .
+  127  git commit -m update
+  128  git push 
+  129  pwd
+  130  oc adm groups new group_name 
+  131  oc get groups
+  132  for x in `cat`; do oc adm group new $x; done
+  133  for x in `cat`; do oc adm groups new $x; done
+  134  oc get groups
+  135  oc adm groups prune group_name
+  136  oc adm groups --help 
+  137  oc adm groups prune group_name
+  138  oc get groups
+  139  oc adm groups add-users --help |less
+  140  oc adm groups add-users sre_team_grp user1 user2 user3 user4 user5
+  141  oc get  groups.user.openshift.io 
+  142  for x in {6..10}; do oc adm groups add-users devops_team_grp user$x; done
+  143  for x in {11..30}; do oc adm groups add-users application-01_team_grp user$x; done
+  144  for x in {31..50}; do oc adm groups add-users application-02_team_grp user$x; done
+  145  for x in {51..70}; do oc adm groups add-users application-03_team_grp user$x; done
+  146  oc get groups
+  147  oc adm groups add-users group_name user5 user50
+  148  oc get groups
+  149  oc adm policy add-cluster-role-to-group cluster-admin  sre_team_grp
+  150  oc get groups
+  151  oc get users | grep sre
+  152  oc login -u user1 -p redhat 
+  153  oc get nodes
+  154  oc get secret kubeadmin -n kube-system 
+  155  oc delete secret kubeadmin -n kube-system 
+  156  oc whoami 
+  157  oc login -u kubeadmin -p WdBz8-mLKk9-yVN75-UhaiU https://api.ocp4.example.com:6443
+  158  oc describe clusterrolebindings.rbac.authorization.k8s.io |less
+  159  oc login -u user30 -p redhat 
+  160  oc get nodes
+  161  oc new-project demo01
+  162  oc project -q
+  163  oc whoami 
+  164  oc login -u user1 -p redhat 
+  165  oc get nodes
+  166  oc describe clusterrolebindings.rbac.authorization.k8s.io |grep self-provisioner
+  167  oc describe clusterrolebindings self-provisioner
+  168  oc adm policy remove-cluster-role-from-group self-provisioner system:authenticated:oauth
+  169  oc describe clusterrolebindings self-provisioner
+  170  oc login -u user30 -p redhat 
+  171  oc new-project demo02
+  172  oc login -u user1 -p redhat 
+  173  oc adm policy add-cluster-role-to-group self-provisioner 
+  174  oc get groups
+  175  oc adm policy add-cluster-role-to-group self-provisioner devops_team_grp
+  176  oc login -u user30 -p redhat 
+  177  oc new-project demo02
+  178  oc login -u user1 -p redhat 
+  179  oc adm policy add-cluster-role-to-user self-provisioner user30
+  180  oc login -u user30 -p redhat 
+  181  oc new-project demo02
+  182  history > history-02.txt 
